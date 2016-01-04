@@ -57,7 +57,7 @@ class CustomTableViewCell: UITableViewCell {
         comentnumberLabel.font = UIFont.systemFontOfSize(18)
         self.addSubview(comentnumberLabel)
         
-        locationButton = UIButton(frame: CGRectMake(250,40,100,50))
+        locationButton = UIButton(frame: CGRectMake(210,40,100,50))
         locationButton.backgroundColor = UIColor.redColor()
         locationButton.setTitle("where", forState: .Normal)
         locationButton.layer.cornerRadius = 20.0
@@ -68,7 +68,7 @@ class CustomTableViewCell: UITableViewCell {
         // UIImageViewを作成する.
         myImageView1 = UIImageView(frame: CGRectMake(10,100,100,100))
         // 表示する画像を設定する.
-        let myImage1 = UIImage(named: "eat.png")
+        let myImage1 = UIImage(named: "meat.png")
         // 画像をUIImageViewに設定する.
         myImageView1.image = myImage1
         // 画像の表示する座標を指定する.
@@ -79,7 +79,7 @@ class CustomTableViewCell: UITableViewCell {
         // UIImageViewを作成する.
         myImageView2 = UIImageView(frame: CGRectMake(130,100,100,100))
         // 表示する画像を設定する.
-        let myImage2 = UIImage(named: "eat.png")
+        let myImage2 = UIImage(named: "meat.png")
         // 画像をUIImageViewに設定する.
         myImageView2.image = myImage2
         // 画像の表示する座標を指定する.
@@ -90,24 +90,13 @@ class CustomTableViewCell: UITableViewCell {
         // UIImageViewを作成する.
         myImageView3 = UIImageView(frame: CGRectMake(250,100,100,100))
         // 表示する画像を設定する.
-        let myImage3 = UIImage(named: "eat.png")
+        let myImage3 = UIImage(named: "meat.png")
         // 画像をUIImageViewに設定する.
         myImageView3.image = myImage3
         // 画像の表示する座標を指定する.
         self.addSubview(myImageView3)
         
-//        let searchButton = UIButton(frame: CGRectMake(0,0,180,55))
-//        searchButton.backgroundColor = UIColor.whiteColor()
-//        searchButton.layer.masksToBounds = true
-//        searchButton.setTitle("検索", forState: .Normal)
-//        searchButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-//        searchButton.layer.cornerRadius = 20.0
-//        searchButton.layer.position = CGPoint(x: self.view.bounds.width * 3/4, y:96)
-//        searchButton.titleLabel?.font = UIFont.systemFontOfSize(25)
-//        searchButton.addTarget(self, action: "searchButton:", forControlEvents: .TouchUpInside)
-//        self.view.addSubview(searchButton);
-        
-        
+
         
             }
     

@@ -9,10 +9,11 @@ class playViewController: UIViewController, UITableViewDelegate, UITableViewData
     var categoryItems: [String] = ["ラーメン","焼き肉","ファミレス","ラーメン","ラーメン"]
     var comentnumberItems: [String] = ["16","11","8","7","5"]
     
-    
+    var settingButton:UIBarButtonItem!
     
     
     var myTableView: UITableView = UITableView()
+    
     let colorBg = UIColor(red: 255/255, green: 153/255, blue: 0/255, alpha: 1.0)
     var searchButton:UIButton!
     var locationButton: UIButton!
@@ -21,11 +22,14 @@ class playViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.barTintColor = UIColor.orangeColor()
+        
         
         self.navigationItem.title = "遊ぶ"
         // Viewの背景色をorengeに設定する.
         
-        myTableView.backgroundColor = colorBg
+        myTableView.backgroundColor = UIColor.whiteColor()
+        
         
         self.view.backgroundColor = UIColor.whiteColor()
         
@@ -68,7 +72,7 @@ class playViewController: UIViewController, UITableViewDelegate, UITableViewData
         locationButton.layer.position = CGPoint(x:self.view.bounds.width / 2,y:80);
         locationButton.backgroundColor = UIColor.whiteColor()
         // Viewに追加する.
-        locationButton.setTitle("現在地", forState: .Normal)
+        locationButton.setTitle("現在地から検索", forState: .Normal)
         locationButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
         locationButton.layer.borderWidth = 3
         locationButton.addTarget(self, action: "locationsearchButton:", forControlEvents: .TouchUpInside)
@@ -76,7 +80,7 @@ class playViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.view.addSubview(locationButton)
         //locationボタン用
         
-        
+                
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -172,19 +176,19 @@ class playViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.navigationController?.pushViewController(myfiveViewController, animated: true)
             
         }
-        let coment = UITableViewRowAction(style: .Normal, title: "コメントする") {
-            
-            (action, indexPath) in
-            let mysevenViewController: UIViewController = comentViewController()
-            // Viewの移動する.
-            self.navigationController?.pushViewController(mysevenViewController, animated: true)
-            
-        }
+        //        let coment = UITableViewRowAction(style: .Normal, title: "コメントする") {
+        //
+        //            (action, indexPath) in
+        //            let mysevenViewController: UIViewController = comentViewController()
+        //            // Viewの移動する.
+        //            self.navigationController?.pushViewController(mysevenViewController, animated: true)
+        //
+        //        }
         
         
         information.backgroundColor = UIColor.redColor()
-        coment.backgroundColor = UIColor.greenColor()
-        return [information,coment]
+        //        coment.backgroundColor = UIColor.greenColor()
+        return [information]
         
         
     }
@@ -195,5 +199,6 @@ class playViewController: UIViewController, UITableViewDelegate, UITableViewData
         //self.presentViewController(myfourthViewController, animated: true, completion: nil)
         self.navigationController?.pushViewController(mysixViewController, animated: true)
     }
+    
     
 }

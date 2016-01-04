@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        var second: MainTabViewController = MainTabViewController()
+        let second: MainTabViewController = MainTabViewController()
         self.window?.rootViewController = second
             
         

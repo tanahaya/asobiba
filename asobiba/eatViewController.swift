@@ -17,10 +17,9 @@ class eatViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     var categoryItems: [String] = ["ラーメン","焼き肉","ファミレス","ラーメン","ラーメン"]
     var comentnumberItems: [String] = ["16","11","8","7","5"]
     
-    var settingButton:UIBarButtonItem!
-    
    
     var myTableView: UITableView = UITableView()
+    
     let colorBg = UIColor(red: 255/255, green: 153/255, blue: 0/255, alpha: 1.0)
     var searchButton:UIButton!
     var locationButton: UIButton!
@@ -28,12 +27,15 @@ class eatViewController: UIViewController, UITableViewDelegate, UITableViewDataS
 
         override func viewDidLoad() {
         super.viewDidLoad()
+            
+        self.navigationController?.navigationBar.barTintColor = UIColor.orangeColor()
         
             
         self.navigationItem.title = "食べる"
         // Viewの背景色をorengeに設定する.
         
-        myTableView.backgroundColor = colorBg
+        myTableView.backgroundColor = UIColor.whiteColor()
+        
             
         self.view.backgroundColor = UIColor.whiteColor()
         
@@ -84,9 +86,7 @@ class eatViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             self.view.addSubview(locationButton)
             //locationボタン用
             
-            settingButton = UIBarButtonItem(title: "アカウント設定", style: .Plain, target: self, action: "movesetting:")
-            self.navigationItem.rightBarButtonItem = settingButton
- 
+            
         
     }
     override func didReceiveMemoryWarning() {
@@ -206,13 +206,7 @@ class eatViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         //self.presentViewController(myfourthViewController, animated: true, completion: nil)
         self.navigationController?.pushViewController(mysixViewController, animated: true)
     }
-    func movesetting(sender:UIButton){
-        let mytenViewController: UIViewController = settingViewController()
-        
-        // Viewの移動する.
-        //self.presentViewController(myfourthViewController, animated: true, completion: nil)
-        self.navigationController?.pushViewController(mytenViewController, animated: true)
-    }
+    
 
 }
 

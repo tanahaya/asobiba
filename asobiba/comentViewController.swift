@@ -40,7 +40,7 @@ class comentViewController: UIViewController ,UITextFieldDelegate{
         tastenumber.backgroundColor = UIColor.orangeColor()
         tastenumber.layer.masksToBounds = true
         tastenumber.layer.cornerRadius = 20.0
-        tastenumber.text = ""
+        tastenumber.text = "5"
         tastenumber.textColor = UIColor.whiteColor()
         tastenumber.shadowColor = UIColor.grayColor()
         tastenumber.textAlignment = NSTextAlignment.Center
@@ -63,7 +63,7 @@ class comentViewController: UIViewController ,UITextFieldDelegate{
         pricenumber.backgroundColor = UIColor.orangeColor()
         pricenumber.layer.masksToBounds = true
         pricenumber.layer.cornerRadius = 20.0
-        pricenumber.text = ""
+        pricenumber.text = "5"
         pricenumber.textColor = UIColor.whiteColor()
         pricenumber.shadowColor = UIColor.grayColor()
         pricenumber.textAlignment = NSTextAlignment.Center
@@ -85,7 +85,7 @@ class comentViewController: UIViewController ,UITextFieldDelegate{
         allnumber.backgroundColor = UIColor.orangeColor()
         allnumber.layer.masksToBounds = true
         allnumber.layer.cornerRadius = 20.0
-        allnumber.text = ""
+        allnumber.text = "5"
         allnumber.textColor = UIColor.whiteColor()
         allnumber.shadowColor = UIColor.grayColor()
         allnumber.textAlignment = NSTextAlignment.Center

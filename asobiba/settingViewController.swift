@@ -9,92 +9,112 @@
 import UIKit
 
 class settingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    var myTableView: UITableView = UITableView()
-    var myItems: [String] = ["ニックネーム","学年","口コミ数","学校","性別","趣味","自己紹介"]
-    var statusItems: [String] = ["tanahaya","中学３年","7","聖光学院","男","ゲーム","なし"]
-    var myImageView: UIImageView!
+    let profileItems: NSArray = ["iOS8", "iOS7", "iOS6", "iOS5", "iOS4"]
+    let reviewerItems: NSArray = ["5.x", "4.x", "2.x", "1.x"]
     var editButton:UIBarButtonItem!
     
-    let saveData = NSUserDefaults.standardUserDefaults()
+    // Sectionで使用する配列を定義する.
+    let mySections: NSArray = ["設定変更","レビュアーページ管理"]
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "プロフィール"
-        self.view.backgroundColor = UIColor.orangeColor()
-        
-        statusItems = saveData.objectForKey("status") as! [String]
-        
-        
-        myImageView = UIImageView(frame: CGRectMake(0,0,self.view.bounds.width,140))
-        
-        // 表示する画像を設定する.
-        let myImage = UIImage(named: "eat.png")
-        
-        // 画像をUIImageViewに設定する.
-        myImageView.image = myImage
-        
-        // 画像の表示する座標を指定する.
-        myImageView.layer.position = CGPoint(x: self.view.bounds.width/2, y: 134)
-        
-        // UIImageViewをViewに追加する.
-        self.view.addSubview(myImageView)
-        
-        editButton = UIBarButtonItem(title: "編集する", style: .Plain, target: self, action: "edit:")
-        self.navigationItem.rightBarButtonItem = editButton
+        self.title = "タナハヤ" + "のプロフィール"
+        self.view.backgroundColor = UIColor.whiteColor()
         
         
         
         let barHeight: CGFloat = UIApplication.sharedApplication().statusBarFrame.size.height
         
-        // Viewの高さと幅を取得.
+        // Viewの高さと幅を取得する.
         let displayWidth: CGFloat = self.view.frame.width
         let displayHeight: CGFloat = self.view.frame.height
-        myTableView.frame = CGRect(x: 0, y: barHeight + 185, width: displayWidth, height: displayHeight)
+        
+        // TableViewの生成( status barの高さ分ずらして表示 ).
+        let myTableView: UITableView = UITableView(frame: CGRect(x: 0, y: barHeight, width: displayWidth, height: displayHeight - barHeight))
+        
+        // Cell名の登録をおこなう.
         myTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
+        
+        // DataSourceの設定をする.
         myTableView.dataSource = self
         
         // Delegateを設定する.
         myTableView.delegate = self
-       
+        
         // Viewに追加する.
         self.view.addSubview(myTableView)
+        
+        editButton = UIBarButtonItem(title: "編集する", style: .Plain, target: self, action: "edit:")
+        self.navigationItem.rightBarButtonItem = editButton
+    
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("Num: \(indexPath.row)")
-        print("Value: \(myItems[indexPath.row])")
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return mySections.count
     }
     
     /*
-    Cellの総数を返す.
+    セクションのタイトルを返す.
+    */
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return mySections[section] as? String
+    }
+    
+    /*
+    Cellが選択された際に呼び出される.
+    */
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if indexPath.section == 0 {
+            print("Value: \(profileItems[indexPath.row])")
+        } else if indexPath.section == 1 {
+            print("Value: \(reviewerItems[indexPath.row])")
+        }
+    }
+    
+    /*
+    テーブルに表示する配列の総数を返す.
     */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myItems.count
+        if section == 0 {
+            return profileItems.count
+        } else if section == 1 {
+            return reviewerItems.count
+        } else {
+            return 0
+        }
     }
+    
+    /*
+    Cellに値を設定する.
+    */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        // 再利用するCellを取得する.
         let cell = tableView.dequeueReusableCellWithIdentifier("MyCell", forIndexPath: indexPath)
         
-        // Cellに値を設定する.
-        cell.textLabel!.text = "\(myItems[indexPath.row])" + "      :       " + "\(statusItems[indexPath.row])"
+        if indexPath.section == 0 {
+            cell.textLabel?.text = "\(profileItems[indexPath.row])"
+        } else if indexPath.section == 1 {
+            cell.textLabel?.text = "\(reviewerItems[indexPath.row])"
+        }
         
         return cell
     }
     func edit(sender:UIButton) {
         
-        saveData.setObject(statusItems, forKey: "status")
-        
+               
         let mytwoViewController: UIViewController = editViewController()
         // Viewの移動する.
         //self.presentViewController(myfourthViewController, animated: true, completion: nil)
         self.navigationController?.pushViewController(mytwoViewController, animated: true)
     }
     
-
+    
+    
 }
