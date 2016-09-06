@@ -20,5 +20,16 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>CFBundleDisplayName</key>
+	<string></string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>ヒラギノ角ゴシック W0.ttc</string>
+	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

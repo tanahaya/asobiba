@@ -10,7 +10,7 @@ import UIKit
 
 class editViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var myTableView: UITableView = UITableView()
-    var myItems: [String] = ["学年","口コミ数","学校","性別","好きな食べもの"]
+    var myItems: [String] = ["名前","学年","レビュー数","学校","性別","好きな食べもの"]
     var statusItems: [String] = ["タナハヤ","中学３年","7","聖光学院","男","ラーメン"]
     var myImageView: UIImageView!
     var editButton:UIBarButtonItem!
@@ -18,19 +18,21 @@ class editViewController: UIViewController, UITableViewDelegate, UITableViewData
     var myImage:UIImage!
     let defaults = NSUserDefaults.standardUserDefaults()
     var dic = ["first": true]
-    
+    var str:String?
+    var number:Int!
+    var number2:Int = 0
+    let myLabel: UILabel = UILabel(frame: CGRectMake(0,0,150,50))
+
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        defaults.registerDefaults(dic)
-        
-        self.title = "タナハヤ" + "のプロフィールの編集"
-        self.view.backgroundColor = UIColor.whiteColor()
         
         
+        self.navigationItem.title = statusItems[0] + "のプロフィール"
+         self.view.backgroundColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.barTintColor = UIColor.orangeColor()
         
-        let myLabel: UILabel = UILabel(frame: CGRectMake(0,0,150,50))
         
         // 背景をオレンジ色にする.
         myLabel.backgroundColor = UIColor.orangeColor()
@@ -53,11 +55,10 @@ class editViewController: UIViewController, UITableViewDelegate, UITableViewData
         // ViewにLabelを追加.
         self.view.addSubview(myLabel)
         myTableView.scrollEnabled = false
-        
-        
+        defaults.registerDefaults(dic)
        
         
-        if defaults.boolForKey("first") {
+        if defaults.boolForKey("first") == true {
             myImage = UIImage(named: "person2.png")
             defaults.setObject(false, forKey: "fisrt")
         }else {
@@ -94,6 +95,53 @@ class editViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("Num: \(indexPath.row)")
         print("Value: \(myItems[indexPath.row])")
+        number = indexPath.row
+        let alert:UIAlertController = UIAlertController(
+            title:"title",
+            message:"message",
+            preferredStyle:UIAlertControllerStyle.Alert
+        )
+        
+        // キャンセルボタン
+        let actionCancel = UIAlertAction(title: "Cancel", style: .Default, handler:nil)
+        alert.addAction(actionCancel)
+        
+        // OKボタン
+        let actionOK = UIAlertAction(title: "OK", style: .Default, handler:{(action:UIAlertAction!) -> Void in
+            let textFields:Array<UITextField>? =  alert.textFields 
+            if textFields != nil {
+                for textFields:UITextField in textFields! {
+                    // 入力内容の取得
+                    self.str = textFields.text
+                    
+                }
+            }
+            
+        self.statusItems.removeAtIndex(indexPath.row)
+        self.statusItems.insert(self.str!, atIndex: indexPath.row)
+        self.myTableView.reloadData()
+            
+            
+        })
+        
+        alert.addAction(actionOK)
+        
+        //TextFiled
+        alert.addTextFieldWithConfigurationHandler({(text:UITextField!) -> Void in
+//            text.placeholder = "placeholder"
+            
+            // TextFiledが空ならOKボタンをクリックできないようにする
+            NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: text, queue: NSOperationQueue.mainQueue()) { (notification) in
+                actionOK.enabled = text.text != ""
+                
+                
+            }
+        })
+        
+        // アラートの表示
+        self.presentViewController(alert, animated:true, completion:nil)
+        
+      
     }
     
     /*
@@ -108,7 +156,7 @@ class editViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCellWithIdentifier("MyCell", forIndexPath: indexPath)
         
         // Cellに値を設定する.
-        cell.textLabel!.text = "\(myItems[indexPath.row])" + "      :       " + "\(statusItems[indexPath.row + 1])"
+        cell.textLabel!.text = "\(myItems[indexPath.row])" + "      :       " + "\(statusItems[indexPath.row])"
         
         return cell
     }
@@ -144,11 +192,20 @@ class editViewController: UIViewController, UITableViewDelegate, UITableViewData
             defaults.setObject(editedImage, forKey: "image")
         }else{
             myButton.setImage(image, forState: .Normal)
-        }
+                    }
         
         // フォトライブラリの画像・写真選択画面を閉じる
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
+//    func changeTextField (sender: NSNotification) {
+//        let textField = sender.object as! UITextField
+//        // 入力された文字を表示.
+//        str = textField.text
+//        
+//        
+//        
+//        
+//    }
     
     
 }

@@ -80,6 +80,8 @@ class playViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.view.addSubview(locationButton)
         //locationボタン用
         
+        
+        
                 
     }
     override func didReceiveMemoryWarning() {
@@ -114,6 +116,14 @@ class playViewController: UIViewController, UITableViewDelegate, UITableViewData
         //        cell.contentLabel.text = "ホゲホゲ";
         cell.locationButton.addTarget(self, action: "mapButton:", forControlEvents: .TouchUpInside)
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        let image1 = UIImage(named: "meat.png")
+        let image2 = UIImage(named: "meat.png")
+        let image3 = UIImage (named: "meat.png")
+        
+        
+        
+        
+        
         return cell
         
         
@@ -171,33 +181,15 @@ class playViewController: UIViewController, UITableViewDelegate, UITableViewData
         let information = UITableViewRowAction(style: .Normal, title: "詳しく") {
             
             (action, indexPath) in
-            let myfiveViewController: UIViewController = informationViewController()
+            let myfiveViewController: UIViewController = informationsViewController()
             // Viewの移動する.
             self.navigationController?.pushViewController(myfiveViewController, animated: true)
             
         }
-        //        let coment = UITableViewRowAction(style: .Normal, title: "コメントする") {
-        //
-        //            (action, indexPath) in
-        //            let mysevenViewController: UIViewController = comentViewController()
-        //            // Viewの移動する.
-        //            self.navigationController?.pushViewController(mysevenViewController, animated: true)
-        //
-        //        }
-        
-        
         information.backgroundColor = UIColor.redColor()
-        //        coment.backgroundColor = UIColor.greenColor()
         return [information]
         
         
-    }
-    func locationsearchButton(sender:UIButton) {
-        let mysixViewController: UIViewController = locationSearchViewController()
-        
-        // Viewの移動する.
-        //self.presentViewController(myfourthViewController, animated: true, completion: nil)
-        self.navigationController?.pushViewController(mysixViewController, animated: true)
     }
     
     

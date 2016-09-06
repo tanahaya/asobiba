@@ -10,16 +10,21 @@ import UIKit
 
 
 class CustomTableViewCell: UITableViewCell {
-    var titleLabel = UILabel();
-    var contentLabel = UILabel();
-    var numberLabel = UILabel();
-    var starLabel = UILabel();
-    var categoryLabel = UILabel();
-    var comentnumberLabel = UILabel();
-    var myImageView1: UIImageView!
-    var myImageView2: UIImageView!
-    var myImageView3: UIImageView!
+    
+    var titleLabel = UILabel()
+    var contentLabel = UILabel()
+    var numberLabel = UILabel()
+    var starLabel = UILabel()
+    var hyoukaLabel = UILabel()
+    var tenLabel = UILabel()
+    var categoryLabel = UILabel()
+    var comentnumberLabel = UILabel()
+    var myImagebutton1: UIButton!
+    var myImagebutton2: UIButton!
+    var myImagebutton3: UIButton!
     var locationButton: UIButton!
+    var yosanLabel = UILabel()
+    var kyoriLabel = UILabel()
     
 
     
@@ -31,78 +36,90 @@ class CustomTableViewCell: UITableViewCell {
         //cellの高さを変える
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        numberLabel = UILabel(frame: CGRectMake(10,15,300,15))
-        numberLabel.text = "";
-        numberLabel.font = UIFont.systemFontOfSize(18)
+        numberLabel = UILabel(frame: CGRectMake(20,15,300,35))
+        numberLabel.text = ""
+        numberLabel.font = UIFont(name: "HiraginoSans-W0", size: 45)
+        numberLabel.font = UIFont.systemFontOfSize(45)
         self.addSubview(numberLabel)
         
-        titleLabel = UILabel(frame: CGRectMake(30,15,300,15))
-        titleLabel.text = "";
-        titleLabel.font = UIFont.systemFontOfSize(18)
+        titleLabel = UILabel(frame: CGRectMake(55,15,300,35))
+        titleLabel.text = ""
+        titleLabel.font = UIFont(name: "HiraginoSans-W0", size: 35)
+        titleLabel.font = UIFont.systemFontOfSize(35)
         self.addSubview(titleLabel)
         
         
-        starLabel = UILabel(frame: CGRectMake(10,40,300,15))
-        starLabel.text = "";
-        starLabel.font = UIFont.systemFontOfSize(18)
+        starLabel = UILabel(frame: CGRectMake(85,75,300,40))
+        starLabel.text = ""
+        starLabel.font = UIFont(name: "HiraginoSans-W0", size: 50)
+        starLabel.font = UIFont.systemFontOfSize(50)
         self.addSubview(starLabel)
         
-        categoryLabel = UILabel(frame: CGRectMake(10,60,300,15))
-        categoryLabel.text = "";
-        categoryLabel.font = UIFont.systemFontOfSize(18)
-        self.addSubview(categoryLabel)
+        hyoukaLabel = UILabel(frame: CGRectMake(20,60,300,40))
+        hyoukaLabel.text = "評価"
+        hyoukaLabel.font = UIFont(name: "HiraginoSans-W0", size: 25)
+        hyoukaLabel.font = UIFont.systemFontOfSize(25)
+        self.addSubview(hyoukaLabel)
         
-        comentnumberLabel = UILabel(frame: CGRectMake(10,80,300,15))
-        comentnumberLabel.text = "";
-        comentnumberLabel.font = UIFont.systemFontOfSize(18)
-        self.addSubview(comentnumberLabel)
+        tenLabel = UILabel(frame: CGRectMake(170,90,300,40))
+        tenLabel.text = "点"
+        tenLabel.font = UIFont(name: "HiraginoSans-W0", size: 30)
+        tenLabel.font = UIFont.systemFontOfSize(30)
+        self.addSubview(tenLabel)
         
-        locationButton = UIButton(frame: CGRectMake(210,40,100,50))
-        locationButton.backgroundColor = UIColor.redColor()
-        locationButton.setTitle("where", forState: .Normal)
+        yosanLabel = UILabel(frame: CGRectMake(15,130,300,50))
+        yosanLabel.text = ""
+        yosanLabel.font = UIFont(name: "HiraginoSans-W0", size: 30)
+        yosanLabel.font = UIFont.systemFontOfSize(30)
+        self.addSubview(yosanLabel)
+        
+        kyoriLabel = UILabel(frame: CGRectMake(220,150,300,50))
+        kyoriLabel.text = ""
+        kyoriLabel.font = UIFont(name: "HiraginoSans-W0", size: 30)
+        kyoriLabel.font = UIFont.systemFontOfSize(30)
+        self.addSubview(kyoriLabel)
+
+        
+        locationButton = UIButton(frame: CGRectMake(230,80,130,70))
+         locationButton.setTitle("", forState: .Normal)
         locationButton.layer.cornerRadius = 20.0
-        locationButton.titleLabel?.font = UIFont.systemFontOfSize(25)
-        self.addSubview(locationButton);
+        // locationButton.titleLabel?.font = UIFont.systemFontOfSize(25)
+        let walkimage = UIImage(named: "mappin.png")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        locationButton.setImage(walkimage, forState: .Normal)
+        locationButton.tintColor = UIColor.whiteColor()
+        self.addSubview(locationButton)
         
-        
-        // UIImageViewを作成する.
-        myImageView1 = UIImageView(frame: CGRectMake(10,100,100,100))
-        // 表示する画像を設定する.
-        let myImage1 = UIImage(named: "meat.png")
-        // 画像をUIImageViewに設定する.
-        myImageView1.image = myImage1
-        // 画像の表示する座標を指定する.
-        self.addSubview(myImageView1)
-        
-        
+        let image = UIImage(named: "meat.png") 
         
         // UIImageViewを作成する.
-        myImageView2 = UIImageView(frame: CGRectMake(130,100,100,100))
-        // 表示する画像を設定する.
-        let myImage2 = UIImage(named: "meat.png")
-        // 画像をUIImageViewに設定する.
-        myImageView2.image = myImage2
-        // 画像の表示する座標を指定する.
-        self.addSubview(myImageView2)
+        myImagebutton1 = UIButton(frame: CGRectMake(10,190,100,100))
+        myImagebutton1.setImage(image, forState: .Normal)
+        self.addSubview(myImagebutton1)
         
         
         
         // UIImageViewを作成する.
-        myImageView3 = UIImageView(frame: CGRectMake(250,100,100,100))
-        // 表示する画像を設定する.
-        let myImage3 = UIImage(named: "meat.png")
-        // 画像をUIImageViewに設定する.
-        myImageView3.image = myImage3
-        // 画像の表示する座標を指定する.
-        self.addSubview(myImageView3)
+        myImagebutton2 = UIButton(frame: CGRectMake(130,190,100,100))
+        myImagebutton2.setImage(image, forState: .Normal)
+        self.addSubview(myImagebutton2)
+        
+        
+        
+        // UIImageViewを作成する.
+        myImagebutton3 = UIButton(frame: CGRectMake(250,190,100,100))
+        myImagebutton3.setImage(image, forState: .Normal)
+        self.addSubview(myImagebutton3)
         
 
         
             }
-    
-    
-    required init(coder aDecoder: NSCoder)
-    {
-        super.init(coder: aDecoder)!
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
+//    
+//    required init(coder aDecoder: NSCoder)
+//    {
+//        super.init(coder: aDecoder)!
+//    }
 }

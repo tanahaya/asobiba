@@ -17,7 +17,8 @@ class myPageViewController: UIViewController,UITableViewDataSource, UITableViewD
     var myImageView: UIImageView!
     var settingButton:UIBarButtonItem!
     var myButton:UIButton!
-    let myStatus = NSUserDefaults.standardUserDefaults()
+    let defaults = NSUserDefaults.standardUserDefaults()
+
         
         
         
